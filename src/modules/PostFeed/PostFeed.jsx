@@ -9,15 +9,25 @@ export const PostContext = createContext();
 
 const PostFeed = () => {
     const [posts, setPosts] = useReducer(reducer, [])
+    const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
       setIsLoading(true)
+      setError(null)
       PostService.fetchAll()
-      .then(res => res.json())
+      .then(res => {
+        if(!res.ok) {
+          throw new Error(res.statusText)
+        }
+        return res.json()
+      })
       .then(response => {
         setPosts({ type: ADD_POSTS, data: response } );
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+        setError("There was an error loading posts.  Please try again")
+      })
       .finally(() => {
         setIsLoading(false)
       });
@@ -27,7 +37,7 @@ const PostFeed = () => {
     <div>
         <Switch>
           <Route exact path={["/posts"]}>
-            {isLoading ? <div>Loading Posts...</div> : <PostList posts={ posts }/>}
+            {isLoading ? <div>Loading Posts...</div> : error ? <div>{error}</div> : <PostList posts={ posts }/>}
             </Route>
           <Route exact path="/posts/add" component={ CreatePost } />
         </Switch>
