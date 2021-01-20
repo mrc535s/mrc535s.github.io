@@ -1,4 +1,4 @@
-const POSTS_URI = 'http://jsonplaceholder.typicode.com/posts';
+export const POSTS_URI = 'http://jsonplaceholder.typicode.com/posts';
 const headers = new Headers({
     Accept: "application/vnd.github.cloak-preview",
     'Content-type': 'application/json; charset=UTF-8'

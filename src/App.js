@@ -1,9 +1,9 @@
 import React from "react";
-import Posts from "./modules/PostFeed/PostFeed"
+import PostFeed from "./modules/PostFeed/PostFeed"
 const App = ( ) => {
   return (
     <div>
-        <Posts />
+        <PostFeed />
     </div>
   );
 };
