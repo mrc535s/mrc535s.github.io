@@ -48,7 +48,7 @@ const CreatePost = props => {
         props.history.push("/posts");
       })
       .catch((err) => {
-        console.error(err)
+        //console.error(err)
         setSubmitted(false)
         setError('There was an error creating the Post.  Please try again.')
       })
