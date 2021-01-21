@@ -5,10 +5,10 @@ import { setupServer } from 'msw/node'
 import { render, fireEvent, waitFor, screen, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import Post from '../components/Post';
-import { PostContext } from '../PostFeed'
+import Post from '../Post';
+import { PostContext } from '../../PostFeed'
 
-import { POSTS_URI } from '../services/PostService'
+import { POSTS_URI } from '../../services/PostService'
 
 const server = setupServer(
   rest.delete(`${POSTS_URI}/*`, (req, res, ctx) => {
